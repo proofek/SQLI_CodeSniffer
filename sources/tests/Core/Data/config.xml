@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+    <event code="DUPLICATE_CLASS_OR_INTERFACE">
+        <message>Duplicate :type name ":name" found; first defined in :file on line :line</message>
+        <level>ERROR</level>
+    </event>
+</report>
