@@ -1,0 +1,8 @@
+Version 0.3
+- add elements to config.xml for Sonar plugin import
+- add plug and test functionality
+- refactor existing tests
+
+Version 0.4
+- refactor config.xml to ruleset.xml for Sonar plugin export
+- add parameters setting mecanism to Sniffers
