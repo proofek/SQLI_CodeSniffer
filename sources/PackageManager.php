@@ -25,6 +25,7 @@ $e = $packagexml->setOptions(array(
     ),
     'installexceptions' => array(
         'scripts/sqlics.dist' => '/',
+        'scripts/sqlics.bat.dist' => '/',
     )
 ));
 
@@ -38,22 +39,34 @@ $packagexml->setReleaseStability('devel');
 $packagexml->setAPIStability('devel');
 $packagexml->setNotes("This veresion adds infos to config.xml for Sonar plugin import and  plug and test functionality");
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
-$packagexml->addRelease(); // set up a release section
+
 $packagexml->setPhpDep('5.1.2');
 $packagexml->setPearinstallerDep('1.4.0b1');
 $packagexml->addPackageDepWithChannel('package', 'PHP_CodeSniffer', 'pear.php.net', '1.2.0RC1');
 $packagexml->addMaintainer('lead', 'blacksun', 'Gabriele Santini', 'gsantini@sqli.com');
 $packagexml->setLicense('New BSD License', 'http://www.opensource.org/licenses/bsd-license.php');
 
-$packagexml->addReplacement('scripts/sqlics.dist', 'pear-config', '@php_bin@', 'php_bin');
-$packagexml->addGlobalReplacement('package-info', '@package_version@', 'version');
+$packagexml->addRelease(); // set up a release section
+$packagexml->setOSInstallCondition('windows');
+$packagexml->addReplacement('scripts/sqlics.bat.dist', 'pear-config', '@php_bin@', 'php_bin');
+$packagexml->addReplacement('scripts/sqlics.bat.dist', 'pear-config', '@php_dir@', 'php_dir');
+$packagexml->addReplacement('scripts/sqlics.bat.dist', 'pear-config', '@bin_dir@', 'bin_dir');
+$packagexml->addInstallAs('scripts/sqlics.bat.dist', 'sqlics.bat');
+$packagexml->addInstallAs('scripts/sqlics.dist', 'sqlics');
 
+$packagexml->addRelease(); // set up a release section
+$packagexml->addReplacement('scripts/sqlics.dist', 'pear-config', '@php_bin@', 'php_bin');
+$packagexml->addInstallAs('scripts/sqlics.dist', 'sqlics');
+
+$packagexml->addGlobalReplacement('package-info', '@package_version@', 'version');
 $packagexml->addIgnore('PackageManager.php');
 $packagexml->addIgnore('scripts/sqlics');
+$packagexml->addIgnore('scripts/sqlics.bat');
 
 $packagexml->generateContents(); // create the <contents> tag
 
-$packagexml->addInstallAs('scripts/sqlics.dist', 'sqlics');
+
+
 
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
     $packagexml->writePackageFile();
