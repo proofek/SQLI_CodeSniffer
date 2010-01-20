@@ -30,7 +30,7 @@ class SQLI_CodeSniffer_Reports_Checkstyle
                         echo ' line="'.$line.'" column="'.$column.'"';
                         echo ' severity="'.$error['type'].'"';
                         echo ' code="'.$error['code'].'"';
-                        $message = utf8_encode(htmlspecialchars($error['message']));
+                        $message = htmlspecialchars($error['message'], ENT_COMPAT, 'UTF-8');
                         echo ' message="'.$message.'"';
                         echo ' source="'.$error['source'].'"';
                         echo '/>'.PHP_EOL;
