@@ -18,6 +18,7 @@
 // Require this here so that the unit tests don't have to try and find the
 // abstract class once it is installed into the PEAR tests directory.
 require_once dirname(__FILE__).'/AbstractSniffUnitTest.php';
+require_once dirname(__FILE__).'/AbstractSQLISniffUnitTest.php';
 require_once dirname(__FILE__).'/AbstractTaggedSniffUnitTest.php';
 
 /**

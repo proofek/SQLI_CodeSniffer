@@ -1,6 +1,6 @@
 <?php
 
-abstract class AbstractTaggedSniffUnitTest extends AbstractSniffUnitTest
+abstract class AbstractTaggedSniffUnitTest extends AbstractSQLISniffUnitTest
 {
     // Expected length of an eventDetails array
     const NUMBER_OF_EVENT_DETAILS = 2;
