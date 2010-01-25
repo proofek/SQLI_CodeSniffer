@@ -513,7 +513,7 @@ class SQLI_CodeSniffer extends PHP_CodeSniffer
             && is_file("$dir/{$standard}CodingStandard.php") === true
         ) {
             include_once "$dir/{$standard}CodingStandard.php";
-            $standardClassName = "SQLI_CodeSniffer_Standards_{$standard}_{$standard}CodingStandard";
+            $standardClassName = "PHP_CodeSniffer_Standards_{$standard}_{$standard}CodingStandard";
             $standardClass     = new $standardClassName;
 
             $included = $standardClass->getIncludedSniffs();
@@ -527,9 +527,10 @@ class SQLI_CodeSniffer extends PHP_CodeSniffer
                     $sniffDir = $sniff;
                 } else {
                     $sniffDir = realpath(dirname(__FILE__)."/CodeSniffer/Standards/$sniff");
-                    if ($sniffDir === false) {
-                        $error = "Included sniff $sniff does not exist";
-                        throw new PHP_CodeSniffer_Exception($error);
+                    if (is_dir($sniffDir) === false) {
+                        // try to recover PHP_CodeSniffer Sniffer
+                        $sniffDir = "PHP/CodeSniffer/Standards/$sniff";
+//                        var_dump($sniff);exit;
                     }
                 }
 
