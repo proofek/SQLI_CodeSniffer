@@ -11,7 +11,7 @@ if (class_exists('PHP_CodeSniffer_Standards_CodingStandard', true) === false) {
  * Test Coding Standard.
  *
  */
-class SQLI_CodeSniffer_Standards_GN_GNCodingStandard extends PHP_CodeSniffer_Standards_CodingStandard
+class PHP_CodeSniffer_Standards_GN_GNCodingStandard extends PHP_CodeSniffer_Standards_CodingStandard
 {
     /**
      * Return a list of external sniffs to include with this standard.

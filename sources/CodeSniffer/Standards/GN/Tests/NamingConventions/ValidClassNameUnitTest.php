@@ -1,6 +1,6 @@
 <?php
 
-class GN_Tests_NamingConventions_ValidClassNameUnitTest extends AbstractSniffUnitTest
+class GN_Tests_NamingConventions_ValidClassNameUnitTest extends AbstractSQLISniffUnitTest
 {
 
     /**

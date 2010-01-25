@@ -1,6 +1,6 @@
 <?php
 
-class GN_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends AbstractSniffUnitTest
+class GN_Tests_WhiteSpace_ScopeClosingBraceUnitTest extends AbstractSQLISniffUnitTest
 {
 
     /**

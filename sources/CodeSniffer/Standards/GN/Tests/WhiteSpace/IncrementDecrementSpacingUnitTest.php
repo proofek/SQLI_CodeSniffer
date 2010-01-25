@@ -1,6 +1,6 @@
 <?php
 
-class GN_Tests_WhiteSpace_IncrementDecrementSpacingUnitTest extends AbstractSniffUnitTest
+class GN_Tests_WhiteSpace_IncrementDecrementSpacingUnitTest extends AbstractSQLISniffUnitTest
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-class GN_Tests_Commenting_VariableCommentUnitTest extends AbstractSniffUnitTest
+class GN_Tests_Commenting_VariableCommentUnitTest extends AbstractSQLISniffUnitTest
 {
 
     /**
