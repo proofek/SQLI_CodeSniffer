@@ -230,10 +230,13 @@ class SQLI_CodeSniffer_File extends PHP_CodeSniffer_File
      * Add an Event to the EventList
      *
      * @param string $code
-     * @param array $parameters
-     * @param int $stackPtr
+     * @param mixed  $messageOrParameters
+     * @param int    $stackPtr
+     * @param int    $level
+     * 
+     * @return void
      */
-    public function addEvent($code, $parameters, $stackPtr = null)
+    public function addEvent($code, $messageOrParameters, $stackPtr = null, $level = null)
     {
         if (is_null($stackPtr)) {
             $lineNum = 1;
@@ -244,7 +247,13 @@ class SQLI_CodeSniffer_File extends PHP_CodeSniffer_File
             $lineNum = $tokens[$stackPtr]['line'];
             $column  = $tokens[$stackPtr]['column'];
         }
-        $event = new SQLI_CodeSniffer_Event($lineNum, $column, $code, $parameters, $this->_activeListener);
+        
+        if (is_null($level)) {
+            $event = new SQLI_CodeSniffer_Event($lineNum, $column, $code, $messageOrParameters, $this->_activeListener);
+        } else {
+            $event = new SQLI_CodeSniffer_Event($lineNum, $column, $code, array(), $this->_activeListener);
+            $event->setReportInfos($messageOrParameters, $level);
+        }
         $this->_events->addEvent($event);       
     }
     
@@ -535,31 +544,48 @@ class SQLI_CodeSniffer_File extends PHP_CodeSniffer_File
     }//end detectLineEndings()
 
 
+    protected function getCodeFromActiveListener()
+    {
+        $codeBegins = strrpos($this->_activeListener, '_') + 1;
+
+        return substr($this->_activeListener, $codeBegins, -5);
+    }
+    
     /**
-     * RC: catch addError calls from old-styled sniffers 
+     * Redirect addError calls from old-styled sniffers 
      *
-     * @param string $error    The error message.
-     * @param int    $stackPtr The stack position where the error occured.
+     * @param string  $error    The error message.
+     * @param integer $stackPtr The stack position where the error occured.
+     * @param string  $code     The error code.
      *
      * @return void
      */
-    public function addError($error, $stackPtr)
+    public function addError($error, $stackPtr, $code='')
     {
-        $this->addEvent('RC_DYNAMIC_ERROR', array('message' => $error), $stackPtr);
+        if ($code === '') {
+            $code = $this->getCodeFromActiveListener();    
+        }
+        
+        $this->addEvent($code, $error, $stackPtr, 'ERROR');
     }
 
 
     /**
-     * RC: catch addWarning calls from old-styled sniffers 
+     * Redirect addWarning calls from old-styled sniffers 
      *
-     * @param string $warning  The error message.
-     * @param int    $stackPtr The stack position where the error occured.
+     * @param string  $warning  The warning message.
+     * @param integer $stackPtr The stack position where the error occured.
+     * @param string  $code     The error code.
      *
      * @return void
      */
-    public function addWarning($warning, $stackPtr)
+    public function addWarning($warning, $stackPtr, $code='')
     {
-        $this->addEvent('RC_DYNAMIC_WARNING', array('message' => $warning), $stackPtr);
+        if ($code === '') {
+            $code = $this->getCodeFromActiveListener();    
+        }
+        
+        $this->addEvent($code, $warning, $stackPtr, 'WARNING');
     }
 
     /**

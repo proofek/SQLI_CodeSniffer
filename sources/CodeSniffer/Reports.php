@@ -84,13 +84,11 @@ class SQLI_CodeSniffer_Reports
      *
      * @param string $code
      * 
-     * @throws SQLI_CodeSniffer_Exception
+     * @return bool
      */
-    protected function verifyEventCode($code)
+    protected function isConfiguredEventCode($code)
     {
-        if (!isset($this->configArray[$code])) {
-            throw new SQLI_CodeSniffer_Exception("'$code' event code is not configured");
-        }      
+        return isset($this->configArray[$code]);     
     }
     
     /**
@@ -103,9 +101,11 @@ class SQLI_CodeSniffer_Reports
     protected function getEventLevel($event)
     {   
         $event_code = $event->getCode();
-        $this->verifyEventCode($event_code);
-        
-        return $this->configArray[$event_code]['level'];
+        if ($this->isConfiguredEventCode($event_code)) {
+            return $this->configArray[$event_code]['level'];
+        } else {
+            return $event->getLevel();
+        }
     }
     
     /**
@@ -118,9 +118,11 @@ class SQLI_CodeSniffer_Reports
     protected function getEventMessage($event)
     {
         $event_code = $event->getCode();
-        $this->verifyEventCode($event_code);
-        
-        return $this->configArray[$event_code]['message'];
+        if ($this->isConfiguredEventCode($event_code)) {
+            return $this->configArray[$event_code]['message'];
+        } else {
+            return $event->getMessage();
+        }
     }
     
     /**
@@ -133,10 +135,14 @@ class SQLI_CodeSniffer_Reports
     protected function setEventsInfos(SQLI_CodeSniffer_EventList &$events)
     {
         foreach ($events as $event) {
-            $this->verifyEventCode($event->getCode());
-            $eventLevel = $this->getEventLevel($event);
-            $eventMessage = $this->getEventMessage($event);
-            $event->setReportInfos($eventMessage, $eventLevel);
+            if ($this->isConfiguredEventCode($event->getCode())) {
+                $eventLevel = $this->getEventLevel($event);
+                $eventMessage = $this->getEventMessage($event);
+                $event->setReportInfos($eventMessage, $eventLevel);                
+            } else {
+                $eventLevel = $this->getEventLevel($event);
+            }
+
             $events->addLevelCount($eventLevel);
         }
         

@@ -82,6 +82,7 @@ class SQLI_CodeSniffer_Event
      * @param string $code
      * @param array  $parameters
      * @param string $listener
+     * 
      * @throws SQLI_CodeSniffer_Exception wrong parameters
      */
     public function __construct($line, $column, $code, $parameters = array(), $listener = '')
@@ -232,8 +233,10 @@ class SQLI_CodeSniffer_Event
      */
     protected function setMessage($message)
     {
-        foreach($this->_parameters as $key => $value) {
-            $message = str_replace(":$key", $value, $message);
+        if (!empty($this->_parameters)) {
+            foreach($this->_parameters as $key => $value) {
+                $message = str_replace(":$key", $value, $message);
+            }
         }
         $this->_message = $message;
     }
