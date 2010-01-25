@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+    <event code="RC_DYNAMIC_ERROR" source="PHPCS/Generic">
+        <name>Erreur PHP_CodeSniffer</name>
+        <message>:message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="MultipleClassOrInterfaceInSingleFile" source="Symfony/Classes/ClassDeclarationSniff">
+        <name>Multiple Class Or Interface</name>
+        <message>Un fichier source PHP doit contenir une seule classe (ou interface).</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+</report>
