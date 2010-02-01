@@ -123,10 +123,10 @@ class SQLI_CodeSniffer_EventList implements Iterator, Countable
      * @param int $column
      * @return array
      */
-    protected function getEvents($line, $column = null)
+    public function getEvents($line, $column = null)
     {
         if (!isset($this->_events[$line])) {
-            return array();
+            return $this;
         }
         if ($column) {
             if (!isset($this->_events[$line][$column])) {

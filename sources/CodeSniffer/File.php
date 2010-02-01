@@ -276,6 +276,44 @@ class SQLI_CodeSniffer_File extends PHP_CodeSniffer_File
     }
     
     /**
+     * Returns the errors raised from processing this file.
+     *
+     * @return array
+     */
+    public function getErrors()
+    {
+        $errors = array();
+
+        foreach($this->getEvents() as $event) {
+            if ($event->getLevel() === 'ERROR') {
+                $errors[$event->getLine()][$event->getColumn()][] = $event->getMessage();
+            }
+        }
+
+        return $errors;
+
+    }//end getErrors()
+
+
+    /**
+     * Returns the warnings raised from processing this file.
+     *
+     * @return array
+     */
+    public function getWarnings()
+    {
+        $warnings = array();
+        foreach($this->getEvents() as $event) {
+            if ($event->getLevel() === 'WARNING') {
+                $warnings[$event->getLine()][$event->getColumn()][] = $event->getMessage();
+            }
+        }
+        
+        return $warnings;
+
+    }//end getWarnings()
+    
+    /**
      * Returns the EventList object
      *
      * @return SQLI_CodeSniffer_EventList
