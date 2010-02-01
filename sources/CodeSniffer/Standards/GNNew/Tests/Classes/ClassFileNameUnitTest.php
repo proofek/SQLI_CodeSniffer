@@ -1,26 +1,30 @@
 <?php
 
-class GNNew_Tests_Classes_ClassFileNameUnitTest extends AbstractSQLISniffUnitTest
-{
-
+class GNNew_Tests_Classes_ClassFileNameUnitTest extends AbstractSniffUnitTest
+{  
+    /**
+     * Returns the lines where errors should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of errors that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+    public function getErrorList($testFile='')
+    {
+    	return array();
+    }//end getErrorList()
+    
     /**
      * Returns the lines where warnings should occur.
      *
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return SQLI_CodeSniffer_EventList
+     * @return array(int => int)
      */
-    public function getEventList($testFile='')
-    {	
-        switch ($testFile) {
-	        //case 'ClassFileNameUnitTest2.php':
-	        //    $events1[] = new SQLI_CodeSniffer_Event(2, 1, 'MATCH_CLASS_NAME');
-	        //    
-	        //    return new SQLI_CodeSniffer_EventList($events1);
-	        default:
-	            return array();
-	            break;
-        }
-    }
+    public function getWarningList()
+    {
+    	return array();
+    }//end getWarningList()
 }

@@ -1,7 +1,31 @@
 <?php
 
-class GNNew_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSQLISniffUnitTest
-{
+class GNNew_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSniffUnitTest
+{	
+	/**
+     * Returns the lines where errors should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of errors that should occur on that line.
+     *
+     * @return array(int => int)
+     */
+	public function getErrorList($testFile='')
+    {
+        switch ($testFile) {
+	        case 'ValidVariableNameUnitTest.1.inc':
+	            return array(2 => 1);
+	        case 'ValidVariableNameUnitTest.2.inc':
+	            return array(3 => 1);
+	        case 'ValidVariableNameUnitTest.3.inc':
+	            return array(3 => 1);	        
+	        default:
+	            return array();
+	            break;
+        }
+           	
+    }//end getErrorList()
+
 
     /**
      * Returns the lines where warnings should occur.
@@ -9,27 +33,16 @@ class GNNew_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSQ
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return SQLI_CodeSniffer_EventList
+     * @return array(int => int)
      */
-    public function getEventList($testFile='')
+	public function getWarningList($testFile='')
     {
         switch ($testFile) {
-	        case 'ValidVariableNameUnitTest.1.inc':
-	            $events1[] = new SQLI_CodeSniffer_Event(2, 1, 'NOT_VALID_CAMEL_VALID_VARIABLE');	            
-	            return new SQLI_CodeSniffer_EventList($events1);
-	        case 'ValidVariableNameUnitTest.2.inc':
-	            $events2[] = new SQLI_CodeSniffer_Event(3, 9, 'ATTR_NOT_VALID_CAMEL_VALID_VARIABLE');	            
-	            return new SQLI_CodeSniffer_EventList($events2);
-	        case 'ValidVariableNameUnitTest.3.inc':
-	            $events3[] = new SQLI_CodeSniffer_Event(3, 9, 'NO_START_UNDERSCORE_VALID_VARIABLE');	            
-	            return new SQLI_CodeSniffer_EventList($events3);
 	        case 'ValidVariableNameUnitTest.4.inc':
-	            $events4[] = new SQLI_CodeSniffer_Event(2, 1, 'CONTAINS_NUMBER_VALID_VARIABLE');	            
-	            return new SQLI_CodeSniffer_EventList($events4);
+	        	return array(2 => 1);	              
 	        default:
 	            return array();
 	            break;
-        }
-           	
-    }
+        }  	
+    }//end getWarningList()
 }
