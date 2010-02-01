@@ -18,8 +18,8 @@
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id: $
  */
-if (class_exists('PHP_CodeSniffer_Standards_ZendClassCommentParser', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_ZendClassCommentParser not found');
+if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === false) {
+    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_CommentParser_ClassCommentParser not found');
 }
 
 /**

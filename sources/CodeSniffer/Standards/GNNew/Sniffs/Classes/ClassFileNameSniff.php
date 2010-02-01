@@ -80,7 +80,7 @@ class GNNew_Sniffs_Classes_ClassFileNameSniff implements PHP_CodeSniffer_Sniff
         if (($tokens[$decName]['content'] !== $fileName) and ($tokens[$decName]['content'] !== $className)) {
             $name  = ucfirst($tokens[$stackPtr]['content']);
             $file .= '"' . $tokens[$stackPtr]['content'] . ' '.$className . '".';
-		    $error = "La classe (ou interface) $name ne doit pas �tre different du nom de fichier source $file".
+		    $error = "La classe (ou interface) $name ne doit pas être different du nom de fichier source $file".
             $phpcsFile->addError($error, $stackPtr, 'FilenameMatchClassname');
         }
     }

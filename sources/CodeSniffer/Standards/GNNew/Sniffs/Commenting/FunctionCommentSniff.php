@@ -289,9 +289,7 @@ class GNNew_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
         }
 
         if ($return === null) {
-            $error = 'Missing @return tag in function comment';
-//            $this->_currentFile->addError($error, $commentEnd);
-			$this->_currentFile->addError("Le tag @return Missing est manquant dans le commentaire de fonction" , $commentEnd, 'TagReturnMissingFunctionComment');
+			$this->_currentFile->addError("Le tag @return est manquant dans le commentaire de fonction" , $commentEnd, 'TagReturnMissingFunctionComment');
             return;
         }
 

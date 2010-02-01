@@ -18,8 +18,8 @@
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id: $
  */
-if (class_exists('PHP_CodeSniffer_Standards_ZendClassCommentParser', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_ZendClassCommentParser not found');
+if (class_exists('PHP_CodeSniffer_ClassCommentParser', true) === false) {
+    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_ClassCommentParser not found');
 }
 
 /**
@@ -127,7 +127,7 @@ class Zend_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
 
         // Parse the class comment docblock
         try {
-            $this->commentParser = new PHP_CodeSniffer_Standards_ZendClassCommentParser($comment, $phpcsFile);
+            $this->commentParser = new PHP_CodeSniffer_ClassCommentParser($comment, $phpcsFile);
             $this->commentParser->parse();
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
