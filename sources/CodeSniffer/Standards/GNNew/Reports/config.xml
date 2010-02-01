@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report>
+    <event code="RC_DYNAMIC_ERROR" source="PHPCS/Generic">
+        <name>Erreur PHP_CodeSniffer</name>
+        <message>:message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
     <event code="MULTIPLE_CLASS_OR_INTERFACE_IN_SINGLE_FILE" source="GNNew/Classes/ClassDeclarationSniff">
         <name>CPC_CLAS_FICH</name>
         <message>Un fichier source PHP doit contenir une seule classe (ou interface).</message>
