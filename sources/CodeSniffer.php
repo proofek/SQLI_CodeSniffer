@@ -530,7 +530,6 @@ class SQLI_CodeSniffer extends PHP_CodeSniffer
                     if (is_dir($sniffDir) === false) {
                         // try to recover PHP_CodeSniffer Sniffer
                         $sniffDir = "PHP/CodeSniffer/Standards/$sniff";
-//                        var_dump($sniff);exit;
                     }
                 }
 
