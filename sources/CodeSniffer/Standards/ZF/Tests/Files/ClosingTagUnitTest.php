@@ -1,33 +1,30 @@
 <?php
 /**
- * Unit test class for the ClosingTag sniff.
+ * Checkstyle report for PHP_CodeSniffer.
  *
  * PHP version 5
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: ClosingTagUnitTest.php 240933 2007-08-09 04:51:52Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @category   PHP_CodeSniffer_Standard
+ * @package    PHP_CodeSniffer_Standard_ZF
+ * @subpackage PHP_CodeSniffer_Standard_ZF_Tests_Files
+ * @author     Sébastien Roux <seroux@sqli.com>
+ * @author     Gabriele Santini <gsantini@sqli.com>
+ * @author     Thomas Weidner <seroux@sqli.com>
+ * @copyright  2010 SQLI <www.sqli.com>
+ * @license    http: ???
+ * @version    CVS: $Id: IsCamelCapsTest.php 240585 2007-08-02 00:05:40Z squiz $
+ * @link       http://pear.php.net/package/PHP_CodeSniffer
  */
 
 /**
- * Unit test class for the ClosingTag sniff.
+ * ZF_Tests_Files_ClosingTagUnitTest
  *
- * A sniff unit test checks a .inc file for expected violations of a single
- * coding standard. Expected errors and warnings are stored in this class.
+ * Checks the declaration of the class and its inheritance is correct
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: @package_version@
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @category  Zend
+ * @package   Zend_CodingStandard
+ * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZF_Tests_Files_ClosingTagUnitTest extends AbstractSniffUnitTest
 {

@@ -91,11 +91,13 @@ class ZF_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_CodeSniffer_Sni
         if (in_array($tokens[$stackPtr]['code'], array(T_CASE, T_DEFAULT)) === true and $isBreakCloser === true) {
             // BREAK statements should be indented 4 spaces from the
             // CASE or DEFAULT statement.
-            if ($braceIndent !== ($startColumn + 4)) {
+            
+            //Allready tested in ControlStructures
+            /*if ($braceIndent !== ($startColumn + 4)) {
                 $error = 'Break statement indented incorrectly; expected ' . ($startColumn + 3)
                        . ' spaces, found ' . ($braceIndent - 1);
                 $phpcsFile->addError($error, $scopeEnd, 'BreakIndentation');
-            }
+            }*/
         } else {
             if ($braceIndent !== $startColumn) {
                 $error = 'Closing brace indented incorrectly; expected ' . ($startColumn - 1)

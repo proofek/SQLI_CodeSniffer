@@ -64,11 +64,9 @@ class ZF_Sniffs_Functions_ValidDefaultValueSniff implements PHP_CodeSniffer_Snif
         $nextArg = $phpcsFile->findNext(T_VARIABLE, ($nextArg + 1), $argEnd);
         while ($nextArg !== false) {
             $argHasDefault = self::_argHasDefault($phpcsFile, $nextArg);
-            if (($argHasDefault === false) and ($defaultFound === true)) {
-                $error  = 'Arguments with default values must be at the end';
-                $error .= ' of the argument list';
+            if (!$argHasDefault && $defaultFound) {            	
+                $error  = 'Arguments with default values must be at the end of the argument list';
                 $phpcsFile->addError($error, $nextArg, 'PositionArgumentsWithDefaultValue');
-                return;
             }
 
             if ($argHasDefault === true) {

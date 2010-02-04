@@ -164,6 +164,7 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         // Exactly one blank line between short and long description
         $long = $comment->getLongComment();
         if (empty($long) === false) {
+        	//TODO this test won't work, getLongComment return empty string if there's no blank line between short and long description
             $between        = $comment->getWhiteSpaceBetween();
             $newlineBetween = substr_count($between, $phpcsFile->eolChar);
             if ($newlineBetween !== 2) {
@@ -246,11 +247,12 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
                                   'allow_multiple' => false,
                                   'order_text'     => 'follows @package',
                                  ),
-                 'uses'       => array(
+                 //TODO fix uses tag parsing
+                 /*'uses'       => array(
                                   'required'       => false,
                                   'allow_multiple' => true,
                                   'order_text'     => 'follows @subpackage (if used) or @package',
-                                 ),
+                                 ),*/
                  'see'        => array(
                                   'required'       => false,
                                   'allow_multiple' => true,
@@ -285,7 +287,8 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         $indentation = array();
         $longestTag  = 0;
         $errorPos    = 0;
-
+		
+        //TODO allready checked at line 215
         foreach ($foundTags as $tag => $info) {
             if ((array_key_exists($info, $tags) === false) and ($info !== 'comment')) {
                 $error = "Tag @$info is not allowed";
@@ -324,7 +327,7 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
             if (count($foundIndexes) > 1) {
                 // Multiple occurance not allowed
                 if ($info['allow_multiple'] === false) {
-                    $error = 'Only 1 @$tag tag is allowed in a ' . $this->type . 'comment';
+                    $error = "Only 1 @$tag tag is allowed in a " . $this->type . 'comment';
                     $this->currentFile->addError($error, $errorPos, 'NoDuplicateTagClassComment');
                 } else {
                     // Make sure same tags are grouped together
@@ -396,7 +399,7 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
             if ($indentInfo['space'] !== 0 and $indentInfo['space'] !== ($longestTag + 1)) {
                 $expected     = (($longestTag - strlen($indentInfo['tag'])) + 1);
                 $space        = ($indentInfo['space'] - strlen($indentInfo['tag']));
-                $error        = "@$indentInfo[tag] tag comment indented incorrectly. ";
+                $error        = "@".$indentInfo['tag']." tag comment indented incorrectly. ";
                 $error       .= "Expected $expected spaces but found $space.";
                 $getTagMethod = 'get' . ucfirst($indentInfo['tag']);
                 if (($tags[$indentInfo['tag']]['allow_multiple'] === true) or ($indentInfo['tag'] === 'copyright')) {
@@ -622,11 +625,8 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
     protected function _processCopyrights($errorPos)
     {
         $copyrights = $this->commentParser->getCopyrights();
-        if (count($copyrights) > 1) {
-            $error = 'Only one @copyright tag allowed';
-            $this->currentFile->addError($error, $errorPos, 'OneCopyrightTagAllowedClassComment');
-        } else {
-            $content = $copyrights[0]->getContent();
+        foreach($copyrights as $copyright){
+            $content = $copyright->getContent();
             if ($content !== 'Copyright (c) 2005-' . date('Y') . ' Zend Technologies USA Inc. (http://www.zend.com)') {
                 $error = "@copyright tag must be 'Copyright (c) 2005-" . date('Y') . " Zend Technologies USA Inc. (http://www.zend.com)'";
                 $this->currentFile->addError($error, $errorPos, 'CopyrightTagClassComment');
@@ -659,18 +659,18 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
      * @param  integer $errorPos The line number where the error occurs
      * @return void
      */
-    protected function _processDepreciated($errorPos)
+    protected function _processDeprecated($errorPos)
     {
-        $depr = $this->commentParser->getDepreciated();
+        $depr = $this->commentParser->getDeprecated();
         if ($depr !== null) {
             $content = $depr->getContent();
             if ($content !== '') {
                 if (preg_match('/^([0-9]+)\.([0-9]+)\.([0-9]+)/', $content) === 0) {
-                    $error = 'Expected version number to be in the form x.x.x in @depreciated tag';
+                    $error = 'Expected version number to be in the form x.x.x in @deprecated tag';
                     $this->currentFile->addError($error, $errorPos, 'VersionNumberDepreciatedTagClassComment');
                 }
             } else {
-                $error = '@depreciated tag must contain a version';
+                $error = '@deprecated tag must contain a version';
                 $this->currentFile->addError($error, $errorPos, 'DepreciatedTagMustContainVersionClassComment');
             }
         }
@@ -698,11 +698,11 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
                         }
 
                         $validName = trim($newName, '_');
-                        $error     = "Uses name \"$content\" is not valid; consider \"$validName\" instead";
+                        $error     = "34Uses name \"$content\" is not valid; consider \"$validName\" instead";
                         $this->currentFile->addError($error, $errorPos, 'UsesNameClassComment');
                     }
                 } else {
-                    $error = '@uses tag must contain a name';
+                    $error = '35@uses tag must contain a name';
                     $this->currentFile->addError($error, $errorPos, 'UsesTagMustContainNameClassComment');
                 }
             }

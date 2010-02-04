@@ -145,8 +145,7 @@ class ZF_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniffer
      */
     public function processTokenOutsideScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);
-
+        $functionName = $phpcsFile->getDeclarationName($stackPtr);		
         // Is this a magic function. IE. is prefixed with "__"
         if (preg_match('|^__|', $functionName) !== 0) {
             $magicPart = substr($functionName, 2);

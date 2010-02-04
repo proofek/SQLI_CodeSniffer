@@ -127,7 +127,7 @@ class ZF_Sniffs_ControlStructures_SwitchDeclarationSniff implements PHP_CodeSnif
                                                                      $switch['scope_closer']);
                                     continue;
                                 }
-
+								//TODO test for this case
                                 $error = "You must insert a 'Break intentionally omitted' comment within an empty case";
                                 $phpcsFile->addError($error, $nextCase, 'BreakOmittedCommentEmptyCase');
                             }
@@ -288,7 +288,7 @@ class ZF_Sniffs_ControlStructures_SwitchDeclarationSniff implements PHP_CodeSnif
             }
 
             if ($nextLine !== ($defaultLine + 1)) {
-                $error = 'Blank lines are not allowed after DEFAULT statements';
+                $error = '18Blank lines are not allowed after DEFAULT statements';
                 $phpcsFile->addError($error, $default, 'NoBlankLineAfterDefaultStatement');
             }
         } else {

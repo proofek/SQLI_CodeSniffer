@@ -79,7 +79,7 @@ class ZF_Sniffs_WhiteSpace_MemberVarSpacingSniff extends PHP_CodeSniffer_Standar
 
         if ($tokens[$prevContent]['content'] === '{') {
             if ($foundLines !== 0) {
-                $phpcsFile->addError("Expected 0 blank line before member var; $foundLines found", 'BlankLineBeforeMemberVar');
+                $phpcsFile->addError("Expected 0 blank line before member var; $foundLines found", $stackPtr, 'BlankLineBeforeMemberVar');
             }
         } else if ($foundLines !== 1) {
             $phpcsFile->addError("Expected 1 blank line before member var; $foundLines found", $stackPtr, 'NoBlankLineBeforeMemberVar');

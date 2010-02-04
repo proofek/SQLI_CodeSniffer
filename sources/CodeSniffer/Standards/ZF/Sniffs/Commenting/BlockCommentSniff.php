@@ -107,6 +107,7 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
                 return;
             }
 
+            //TODO A 3 lines block comment, triggers a 'Empty line not allowed at start of comment' error instead of 'Empty block comment not allowed'
             if (trim($tokens[$commentLines[1]]['content']) === '*/') {
                 if (trim($tokens[$stackPtr]['content']) === '/*') {
                     $error = 'Empty block comment not allowed';
@@ -123,10 +124,9 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $starColumn = $tokens[$stackPtr]['column'];
-
+        $starColumn = $tokens[$stackPtr]['column'];		
         // Make sure first line isn't blank
-        if (trim($tokens[$commentLines[1]]['content']) === '') {
+        if (in_array(trim($tokens[$commentLines[1]]['content']), array('', '*'))) {
             $error = 'Empty line not allowed at start of comment';
             $phpcsFile->addError($error, $commentLines[1], 'EmptyLineStartBlockCommentNotAllowed');
         } else {
@@ -140,13 +140,13 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
                 $error     = "First line of comment not aligned correctly; expected $expected but found $leadingSpace";
                 $phpcsFile->addError($error, $commentLines[1], '????????????????????????');
             }
-
-            if (($commentText[0] !== '*') or ($commentText[1] !== ' ')) {
+            
+            if (($commentText[0] !== '*') or ($commentText[1] != ' ')) {
                 $error = "Block comments must start with a '* ' seperation";
                 $phpcsFile->addError($error, $commentLines[1], '????????????????????????');
             }
 
-            if (preg_match('|[A-Z]|', $commentText[2]) === 0) {
+            if (preg_match('|[A-Z]|', trim(strtr($commentText, array('*/', '  ')))) === 0) {
                 $error = 'Block comments must start with a capital letter';
                 $phpcsFile->addError($error, $commentLines[1], 'BlockCommentStartsWithCapitalLetter');
             }
@@ -203,9 +203,9 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
         }
 
         // Check that the lines before and after this comment are blank
-        $contentBefore = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        $contentBefore = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);        
         if ($tokens[$contentBefore]['code'] === T_OPEN_CURLY_BRACKET) {
-            if (($tokens[$stackPtr]['line'] - $tokens[$contentBefore]['line']) < 1) {
+            if (($tokens[$stackPtr]['line'] - $tokens[$contentBefore]['line']) >1) {
                 $error = 'Empty line not required before block comment';
                 $phpcsFile->addError($error, $stackPtr, 'NoEmptyLineBeforeBlockComment');
             }

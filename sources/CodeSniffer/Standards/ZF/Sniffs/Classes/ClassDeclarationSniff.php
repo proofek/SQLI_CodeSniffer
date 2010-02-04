@@ -1,22 +1,19 @@
 <?php
 /**
- * Zend Framework
+ * Checkstyle report for PHP_CodeSniffer.
  *
- * LICENSE
+ * PHP version 5
  *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category  Zend
- * @package   Zend_CodingStandard
- * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: $
+ * @category   PHP_CodeSniffer_Standard
+ * @package    PHP_CodeSniffer_Standard_ZF
+ * @subpackage PHP_CodeSniffer_Standard_ZF_Classes
+ * @author     Sébastien Roux <seroux@sqli.com>
+ * @author     Gabriele Santini <gsantini@sqli.com>
+ * @author     Thomas Weidner <seroux@sqli.com>
+ * @copyright  2010 SQLI <www.sqli.com>
+ * @license    http: ???
+ * @version    CVS: $Id: IsCamelCapsTest.php 240585 2007-08-02 00:05:40Z squiz $
+ * @link       http://pear.php.net/package/PHP_CodeSniffer
  */
 
 /**
@@ -62,7 +59,6 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
             $error .= $tokens[$stackPtr]['content'];
             $error .= ' must be on the line after the definition';
             $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');
-            return;
         } else if ($braceLine > ($classLine + 1)) {
             $difference  = ($braceLine - $classLine - 1);
             $difference .= ($difference === 1) ? ' line' : ' lines';
@@ -71,13 +67,12 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
             $error      .= ' must be on the line following the ';
             $error      .= $tokens[$stackPtr]['content'];
             $error      .= ' declaration; found ' . $difference;
-            $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');
-            return;
+            $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');          
         }
 
         if ($tokens[($curlyBrace + 1)]['content'] !== $phpcsFile->eolChar) {
             $type  = strtolower($tokens[$stackPtr]['content']);
-            $error = "Opening $type brace must be on a line by itself";
+            $error = "Opening $type brace must be on a line by itself. Found content after it";
             $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineByItselfClassDefinition');
         }
 
@@ -208,7 +203,7 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
 
         // Check after the name
         $gap = $tokens[($className + 1)]['content'];
-        if (strlen($gap) !== 1) {
+        if (strlen($gap) !== 1 && $gap != $phpcsFile->eolChar) {
             $found = strlen($gap);
             $error = "Expected 1 space after $name name; $found found";
             $phpcsFile->addError($error, $stackPtr, 'SpaceRequiredAfterNameClassDefinition');

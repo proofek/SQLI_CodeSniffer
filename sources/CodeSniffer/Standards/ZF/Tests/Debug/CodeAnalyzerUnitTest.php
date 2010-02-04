@@ -72,7 +72,7 @@ class ZF_Tests_Debug_CodeAnalyzerUnitTest extends AbstractSniffUnitTest
     public function getWarningList()
     {
         return array(
-                2 => 1,
+                3 => 1,
                );
 
     }//end getWarningList()

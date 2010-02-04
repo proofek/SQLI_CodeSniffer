@@ -23,7 +23,7 @@ if (class_exists('Generic_Sniffs_WhiteSpace_ScopeIndentSniff', true) === false) 
 }
 
 /**
- * ZF_Sniffs_Whitespace_ScopeClosingBraceSniff.
+ * ZF_Sniffs_WhiteSpace_ScopeIndentSniff.
  *
  * Checks that the closing braces of scopes are aligned correctly.
  *
