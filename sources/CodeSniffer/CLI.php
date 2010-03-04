@@ -168,7 +168,7 @@ class SQLI_CodeSniffer_CLI extends PHP_CodeSniffer_CLI
                 $values['showLevel'] = constant('SQLI_CodeSniffer_Reports::' . $showLevel);
             }
         } elseif ($arg == 'version') {
-            echo 'SQLI_CodeSniffer version 0.2.0alpha1 (alpha) ';
+            echo 'SQLI_CodeSniffer version @package_version@ (alpha) ';
             echo 'by SQLI (http://www.sqli.com)'.PHP_EOL;
             exit(0);
         } else {
