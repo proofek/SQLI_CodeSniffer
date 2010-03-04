@@ -20,8 +20,14 @@ $e = $packagexml->setOptions(array(
         'tests'   => 'test',
         'CodeSniffer/Standards/Generic/Reports' => 'php',
         'CodeSniffer/Standards/GN/Reports' => 'php',
+        'CodeSniffer/Standards/GNNew/Reports' => 'php',
+        'CodeSniffer/Standards/ZF/Reports' => 'php',
+        'CodeSniffer/Standards/Symfony/Reports' => 'php',
         'CodeSniffer/Standards/Generic/Tests' => 'test',
         'CodeSniffer/Standards/GN/Tests' => 'test',
+        'CodeSniffer/Standards/GNNew/Tests' => 'test',
+        'CodeSniffer/Standards/ZF/Tests' => 'test',
+        'CodeSniffer/Standards/Symfony/Tests' => 'test'
     ),
     'installexceptions' => array(
         'scripts/sqlics.dist' => '/',
@@ -33,11 +39,11 @@ $packagexml->setPackage('SQLI_CodeSniffer');
 $packagexml->setSummary('SQLI extension to PHP_CodeSniffer');
 $packagexml->setDescription('SQLI_CodeSniffer extends PHP_CodeSniffer to add violation codes and configurable severities and messages');
 $packagexml->setUri('http://www.assembla.com/spaces/sqlics/documents');
-$packagexml->setAPIVersion('0.3.0dev1');
-$packagexml->setReleaseVersion('0.3.0dev1');
+$packagexml->setAPIVersion('0.4.0dev1');
+$packagexml->setReleaseVersion('0.4.0dev1');
 $packagexml->setReleaseStability('devel');
 $packagexml->setAPIStability('devel');
-$packagexml->setNotes("This veresion adds infos to config.xml for Sonar plugin import and  plug and test functionality");
+$packagexml->setNotes("This version adds/recovers some compatibility with PHP_CodeSniffer : sniffers' interface, tests.");
 $packagexml->setPackageType('php'); // this is a PEAR-style php script package
 
 $packagexml->setPhpDep('5.1.2');
