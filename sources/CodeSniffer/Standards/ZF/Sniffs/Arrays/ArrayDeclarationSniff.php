@@ -29,7 +29,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Arrays_ArrayDeclarationSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for
@@ -54,9 +54,13 @@ class ZF_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_CodeSniffer_Sniff
 
         // Array keyword should be lower case
         if (strtolower($tokens[$stackPtr]['content']) !== $tokens[$stackPtr]['content']) {
-            $error = 'Array keyword should be lower case; expected "array" but found "'
-                   . $tokens[$stackPtr]['content'] . '"';
-            $phpcsFile->addError($error, $stackPtr, 'ArrayKeywordLowerCase');
+            //$error = 'Array keyword should be lower case; expected "array" but found "'
+            //       . $tokens[$stackPtr]['content'] . '"';
+            //$phpcsFile->addError($error, $stackPtr, 'ArrayKeywordLowerCase');
+            $phpcsFile->addEvent(
+                       'ARRAY_KEYWORD_LOWERCASE',
+                       array(),
+                       $stackPtr);
         }
 
         $arrayStart   = $tokens[$stackPtr]['parenthesis_opener'];
@@ -64,8 +68,12 @@ class ZF_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_CodeSniffer_Sniff
         $keywordStart = $tokens[$stackPtr]['column'];
 
         if ($arrayStart !== ($stackPtr + 1)) {
-            $error = 'There must be no space between the Array keyword and the opening parenthesis';
-            $phpcsFile->addError($error, $stackPtr, 'NoSpaceBeforeParenthesisArray');
+            //$error = 'There must be no space between the Array keyword and the opening parenthesis';
+            //$phpcsFile->addError($error, $stackPtr, 'NoSpaceBeforeParenthesisArray');
+            $phpcsFile->addEvent(
+                       'NO_SPACE_BEFORE_PARENTHESIS_ARRAY',
+                       array(),
+                       $stackPtr);
         }
 
         // Check for empty arrays
@@ -73,9 +81,13 @@ class ZF_Sniffs_Arrays_ArrayDeclarationSniff implements PHP_CodeSniffer_Sniff
         if ($content === $arrayEnd) {
             // Empty array, but if the brackets aren't together, there's a problem
             if (($arrayEnd - $arrayStart) !== 1) {
-                $error = 'Empty array declaration must have no space between the parentheses';
-                $phpcsFile->addError($error, $stackPtr, 'NoSpaceBetweenParenthesisEmptyArray');
-
+                //$error = 'Empty array declaration must have no space between the parentheses';
+                //$phpcsFile->addError($error, $stackPtr, 'NoSpaceBetweenParenthesisEmptyArray');
+                $phpcsFile->addEvent(
+                            'NO_SPACE_BETWEEN_PARENTHESIS_EMPTYARRAY',
+                            array(),
+                            $stackPtr
+                );
                 // We can return here because there is nothing else to check. All code
                 // below can assume that the array is not empty
                 return;

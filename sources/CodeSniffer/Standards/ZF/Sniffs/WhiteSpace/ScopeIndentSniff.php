@@ -32,7 +32,9 @@ if (class_exists('Generic_Sniffs_WhiteSpace_ScopeIndentSniff', true) === false) 
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_WhiteSpace_ScopeIndentSniff extends Generic_Sniffs_WhiteSpace_ScopeIndentSniff
+class ZF_Sniffs_WhiteSpace_ScopeIndentSniff
+extends Generic_Sniffs_WhiteSpace_ScopeIndentSniff
+implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Does the indent need to be exactly right.

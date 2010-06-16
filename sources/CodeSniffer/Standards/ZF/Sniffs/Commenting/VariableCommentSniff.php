@@ -36,7 +36,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_MemberCommentParser', true) === 
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class ZF_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * The header comment parser for the current file
@@ -165,7 +165,7 @@ class ZF_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Standard
                 if (isset($long) and ($long !== '')) {
                     $newlineCount += (substr_count($long, $phpcsFile->eolChar) - $newlineSpan + 1);
                 }
-			
+
                 if (isset($newlineCount) === false) {
                     $phpcsFile->addError($error, $commentStart, $code);
                 } else {

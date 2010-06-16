@@ -30,7 +30,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Functions_ValidDefaultValueSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Functions_ValidDefaultValueSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -64,7 +64,7 @@ class ZF_Sniffs_Functions_ValidDefaultValueSniff implements PHP_CodeSniffer_Snif
         $nextArg = $phpcsFile->findNext(T_VARIABLE, ($nextArg + 1), $argEnd);
         while ($nextArg !== false) {
             $argHasDefault = self::_argHasDefault($phpcsFile, $nextArg);
-            if (!$argHasDefault && $defaultFound) {            	
+            if (!$argHasDefault && $defaultFound) {
                 $error  = 'Arguments with default values must be at the end of the argument list';
                 $phpcsFile->addError($error, $nextArg, 'PositionArgumentsWithDefaultValue');
             }

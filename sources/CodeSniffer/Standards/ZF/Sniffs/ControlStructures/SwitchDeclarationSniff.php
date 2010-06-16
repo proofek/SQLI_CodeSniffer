@@ -30,7 +30,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_ControlStructures_SwitchDeclarationSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_ControlStructures_SwitchDeclarationSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for
@@ -127,7 +127,7 @@ class ZF_Sniffs_ControlStructures_SwitchDeclarationSniff implements PHP_CodeSnif
                                                                      $switch['scope_closer']);
                                     continue;
                                 }
-								//TODO test for this case
+                                //TODO test for this case
                                 $error = "You must insert a 'Break intentionally omitted' comment within an empty case";
                                 $phpcsFile->addError($error, $nextCase, 'BreakOmittedCommentEmptyCase');
                             }

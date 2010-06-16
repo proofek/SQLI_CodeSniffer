@@ -29,7 +29,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Commenting_InlineCommentSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Commenting_InlineCommentSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for

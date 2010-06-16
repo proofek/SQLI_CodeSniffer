@@ -32,7 +32,9 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Metrics_CyclomaticComplexitySniff extends Generic_Sniffs_Metrics_CyclomaticComplexitySniff
+class ZF_Sniffs_Metrics_CyclomaticComplexitySniff
+extends Generic_Sniffs_Metrics_CyclomaticComplexitySniff
+implements SQLI_CodeSniffer_Sniff
 {
     /**
      * A complexity higher than this value will throw a warning

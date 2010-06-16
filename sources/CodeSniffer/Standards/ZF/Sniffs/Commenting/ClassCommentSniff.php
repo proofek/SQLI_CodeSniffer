@@ -32,7 +32,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Commenting_ClassCommentSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Comment type
@@ -164,7 +164,7 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         // Exactly one blank line between short and long description
         $long = $comment->getLongComment();
         if (empty($long) === false) {
-        	//TODO this test won't work, getLongComment return empty string if there's no blank line between short and long description
+            //TODO this test won't work, getLongComment return empty string if there's no blank line between short and long description
             $between        = $comment->getWhiteSpaceBetween();
             $newlineBetween = substr_count($between, $phpcsFile->eolChar);
             if ($newlineBetween !== 2) {
@@ -287,7 +287,7 @@ class ZF_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         $indentation = array();
         $longestTag  = 0;
         $errorPos    = 0;
-		
+
         //TODO allready checked at line 215
         foreach ($foundTags as $tag => $info) {
             if ((array_key_exists($info, $tags) === false) and ($info !== 'comment')) {

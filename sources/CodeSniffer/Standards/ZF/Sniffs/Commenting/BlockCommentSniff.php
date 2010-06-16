@@ -29,7 +29,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Commenting_BlockCommentSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for
@@ -124,7 +124,7 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $starColumn = $tokens[$stackPtr]['column'];		
+        $starColumn = $tokens[$stackPtr]['column'];
         // Make sure first line isn't blank
         if (in_array(trim($tokens[$commentLines[1]]['content']), array('', '*'))) {
             $error = 'Empty line not allowed at start of comment';
@@ -140,7 +140,7 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
                 $error     = "First line of comment not aligned correctly; expected $expected but found $leadingSpace";
                 $phpcsFile->addError($error, $commentLines[1], '????????????????????????');
             }
-            
+
             if (($commentText[0] !== '*') or ($commentText[1] != ' ')) {
                 $error = "Block comments must start with a '* ' seperation";
                 $phpcsFile->addError($error, $commentLines[1], '????????????????????????');
@@ -203,7 +203,7 @@ class ZF_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
         }
 
         // Check that the lines before and after this comment are blank
-        $contentBefore = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);        
+        $contentBefore = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         if ($tokens[$contentBefore]['code'] === T_OPEN_CURLY_BRACKET) {
             if (($tokens[$stackPtr]['line'] - $tokens[$contentBefore]['line']) >1) {
                 $error = 'Empty line not required before block comment';

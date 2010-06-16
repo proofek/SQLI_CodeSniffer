@@ -33,7 +33,9 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+class ZF_Sniffs_NamingConventions_ValidFunctionNameSniff
+extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+implements SQLI_CodeSniffer_Sniff
 {
     /**
      * A list of all PHP magic methods
@@ -145,7 +147,7 @@ class ZF_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniffer
      */
     public function processTokenOutsideScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $functionName = $phpcsFile->getDeclarationName($stackPtr);		
+        $functionName = $phpcsFile->getDeclarationName($stackPtr);
         // Is this a magic function. IE. is prefixed with "__"
         if (preg_match('|^__|', $functionName) !== 0) {
             $magicPart = substr($functionName, 2);

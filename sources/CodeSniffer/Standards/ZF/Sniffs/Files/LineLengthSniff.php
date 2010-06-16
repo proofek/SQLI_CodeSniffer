@@ -33,7 +33,7 @@ if (class_exists('Generic_Sniffs_Files_LineLengthSniff', true) === false) {
  * @version   Release: 1.2.0RC2
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class ZF_Sniffs_Files_LineLengthSniff extends Generic_Sniffs_Files_LineLengthSniff
+class ZF_Sniffs_Files_LineLengthSniff extends Generic_Sniffs_Files_LineLengthSniff implements SQLI_CodeSniffer_Sniff
 {
 
     /**

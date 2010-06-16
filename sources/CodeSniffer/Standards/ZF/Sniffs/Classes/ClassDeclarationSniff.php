@@ -26,7 +26,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Classes_ClassDeclarationSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -58,7 +58,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
             $error  = 'Opening brace of a ';
             $error .= $tokens[$stackPtr]['content'];
             $error .= ' must be on the line after the definition';
-            $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');
+            //$phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');
+            $phpcsFile->addEvent('OPENING_BRACE_LINE_AFTER_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         } else if ($braceLine > ($classLine + 1)) {
             $difference  = ($braceLine - $classLine - 1);
             $difference .= ($difference === 1) ? ' line' : ' lines';
@@ -67,13 +70,19 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
             $error      .= ' must be on the line following the ';
             $error      .= $tokens[$stackPtr]['content'];
             $error      .= ' declaration; found ' . $difference;
-            $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');          
+            //$phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineAfterClassDefinition');
+            $phpcsFile->addEvent('OPENING_BRACE_LINE_AFTER_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         }
 
         if ($tokens[($curlyBrace + 1)]['content'] !== $phpcsFile->eolChar) {
             $type  = strtolower($tokens[$stackPtr]['content']);
             $error = "Opening $type brace must be on a line by itself. Found content after it";
-            $phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineByItselfClassDefinition');
+            //$phpcsFile->addError($error, $curlyBrace, 'OpeningBraceLineByItselfClassDefinition');
+            $phpcsFile->addEvent('OPENING_BRACE_LINE_BY_ITSELF_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         }
 
         if ($tokens[($curlyBrace - 1)]['code'] === T_WHITESPACE) {
@@ -83,7 +92,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 $spaces     = strlen($blankSpace);
                 if ($spaces !== 0) {
                     $error = "Expected 0 spaces before opening brace; $spaces found";
-                    $phpcsFile->addError($error, $curlyBrace, 'NoSpaceBeforeOpeningBraceClassDefinition');
+                    //$phpcsFile->addError($error, $curlyBrace, 'NoSpaceBeforeOpeningBraceClassDefinition');
+                    $phpcsFile->addEvent('NO_SPACE__BEFORE_OPENING_BRACE_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
                 }
             }
         }
@@ -94,7 +106,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         if ($nextClass !== false) {
             // We have another, so an error is thrown
             $error = 'Only one interface or class is allowed in a file';
-            $phpcsFile->addError($error, $nextClass, 'OneClassOrInterfaceInSingleFile');
+            //$phpcsFile->addError($error, $nextClass, 'OneClassOrInterfaceInSingleFile');
+            $phpcsFile->addEvent('ONE_CLASS_OR_INTERFACE_IN_SINGLE_FILE',
+                        array(),
+                        $stackPtr);
         }
 
         // Check alignment of the keyword and braces
@@ -109,7 +124,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                     if ($spaces !== 0) {
                         $type  = strtolower($tokens[$stackPtr]['content']);
                         $error = "Expected 0 spaces before $type keyword; $spaces found";
-                        $phpcsFile->addError($error, $stackPtr, 'SpaceBeforeClassKeyword');
+                        //$phpcsFile->addError($error, $stackPtr, 'SpaceBeforeClassKeyword');
+                        $phpcsFile->addEvent('SPACE_BEFORE_CLASS_KEYWORD',
+                                    array(),
+                                    $stackPtr);
                     }
                 } else {
                     if ($spaces !== 1) {
@@ -117,7 +135,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                         $prevContent = strtolower($tokens[($stackPtr - 2)]['content']);
                         $error       = "Expected 1 space between $prevContent and "
                                      . "$type keywords; $spaces found";
-                        $phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBeforeClassKeyword');
+                        //$phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBeforeClassKeyword');
+                        $phpcsFile->addEvent('SPACE_REQUIRED_BEFORE_CLASS_KEYWORD',
+                                    array(),
+                                    $stackPtr);
                     }
                 }
             }
@@ -131,7 +152,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 $spaces     = strlen($blankSpace);
                 if ($spaces !== 0) {
                     $error = "Expected 0 spaces before closing brace; $spaces found";
-                    $phpcsFile->addError($error, $closeBrace, 'NoSpaceBeforeClosingBraceClassDefinition');
+                    //$phpcsFile->addError($error, $closeBrace, 'NoSpaceBeforeClosingBraceClassDefinition');
+                    $phpcsFile->addEvent('NO_SPACE_BEFORE_CLOSING_BRACE_CLASSDEFINITION',
+                                array(),
+                                $stackPtr);
                 }
             }
         }
@@ -146,7 +170,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                     $error  = 'Closing brace of a ';
                     $error .= $tokens[$stackPtr]['content'];
                     $error .= ' must be followed by a blank line';
-                    $phpcsFile->addError($error, ($closeBrace + 1), 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                    //$phpcsFile->addError($error, ($closeBrace + 1), 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                    $phpcsFile->addEvent('BLANK_LINE_REQUIRED_AFTER_CLOSING_BRACE_CLASSDEFINITION',
+                                array(),
+                                $stackPtr);
                 }
             }
 
@@ -155,7 +182,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 $error  = 'Content after closing brace of a ';
                 $error .= $tokens[$stackPtr]['content'];
                 $error .= ' found. Only one empty line allowed.';
-                $phpcsFile->addError($error, $closeBrace, 'NoContentAfterClosingBraceClassDefinition');
+                //$phpcsFile->addError($error, $closeBrace, 'NoContentAfterClosingBraceClassDefinition');
+                $phpcsFile->addEvent('NO_CONTENT_AFTER_CLOSING_BRACE_CLASSDEFINITION',
+                            array(),
+                            $stackPtr);
             }
         } else {
             $nextLine  = $tokens[$nextContent]['line'];
@@ -164,13 +194,19 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 $error  = 'Closing brace of a ';
                 $error .= $tokens[$stackPtr]['content'];
                 $error .= ' must be followed by a single blank line';
-                $phpcsFile->addError($error, $closeBrace, 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                //$phpcsFile->addError($error, $closeBrace, 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                $phpcsFile->addEvent('BLANK_LINE_REQUIRED_AFTER_CLOSING_BRACE_CLASSDEFINITION',
+                            array(),
+                            $stackPtr);
             } else if ($nextLine !== ($braceLine + 2)) {
                 $difference = ($nextLine - $braceLine - 1) . ' lines';
                 $error      = 'Closing brace of a ';
                 $error     .= $tokens[$stackPtr]['content'];
                 $error     .= ' must be followed by a single blank line; found ' . $difference;
-                $phpcsFile->addError($error, $closeBrace, 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                //$phpcsFile->addError($error, $closeBrace, 'BlankLineRequiredAfterClosingBraceClassDefinition');
+                $phpcsFile->addEvent('BLANK_LINE_REQUIRED_AFTER_CLOSING_BRACE_CLASSDEFINITION',
+                            array(),
+                            $stackPtr);
             }
         }
 
@@ -181,7 +217,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
             ($tokens[$nextContent]['line'] === $tokens[$closeBrace]['line'])) {
             $type  = strtolower($tokens[$stackPtr]['content']);
             $error = "Closing $type brace must be on a line by itself";
-            $phpcsFile->addError($error, $closeBrace, 'ClosingBraceLineByItselfClassDefinition');
+            //$phpcsFile->addError($error, $closeBrace, 'ClosingBraceLineByItselfClassDefinition');
+            $phpcsFile->addEvent('CLOSING_BRACE_LINE_BY_ITSELF_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         }
 
         // Check that each of the parent classes or interfaces specified are spaced correctly
@@ -198,7 +237,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         if (strlen($gap) !== 1) {
             $found = strlen($gap);
             $error = "Expected 1 space between $name keyword and $name name; $found found";
-            $phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBetweenKeywordNameClassDefinition');
+            //$phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBetweenKeywordNameClassDefinition');
+            $phpcsFile->addEvent('SPACE_REQUIRED_BETWEEN_KEYWORD_NAME_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         }
 
         // Check after the name
@@ -206,7 +248,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         if (strlen($gap) !== 1 && $gap != $phpcsFile->eolChar) {
             $found = strlen($gap);
             $error = "Expected 1 space after $name name; $found found";
-            $phpcsFile->addError($error, $stackPtr, 'SpaceRequiredAfterNameClassDefinition');
+            //$phpcsFile->addError($error, $stackPtr, 'SpaceRequiredAfterNameClassDefinition');
+            $phpcsFile->addEvent('SPACE_REQUIRED_AFTER_NAME_CLASSDEFINITION',
+                        array(),
+                        $stackPtr);
         }
 
         // Now check each of the parents
@@ -230,6 +275,9 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 $name  = $tokens[$parents[$i]]['content'];
                 $error = "Expected 1 space before \"$name\"; 0 found";
                 $phpcsFile->addError($error, ($nextComma + 1), 'SpaceRequiredBeforeNameClassDefinition');
+                $phpcsFile->addEvent('SPACE_REQUIRED_BEFORE_NAME_CLASSDEFINITION',
+                            array(),
+                            $stackPtr);
             } else {
                 if ($tokens[($parents[$i] - 2)]['content'] === "\n") {
                     $before = 6;
@@ -241,7 +289,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                 if ($spaceBefore !== $before) {
                     $name  = $tokens[$parents[$i]]['content'];
                     $error = "Expected $before space before \"$name\"; $spaceBefore found";
-                    $phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBeforeNameClassDefinition');
+                    //$phpcsFile->addError($error, $stackPtr, 'SpaceRequiredBeforeNameClassDefinition');
+                    $phpcsFile->addEvent('SPACE_REQUIRED_BEFORE_NAME_CLASSDEFINITION',
+                                array(),
+                                $stackPtr);
                 }
             }
 
@@ -252,7 +303,10 @@ class ZF_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                         $found = strlen($tokens[($parents[$i] + 1)]['content']);
                         $name  = $tokens[$parents[$i]]['content'];
                         $error = "Expected 0 spaces between \"$name\" and comma; $found found";
-                        $phpcsFile->addError($error, $stackPtr, 'NoSpaceBetweenNameCommaClassDefinition');
+                        //$phpcsFile->addError($error, $stackPtr, 'NoSpaceBetweenNameCommaClassDefinition');
+                        $phpcsFile->addEvent('NO_SPACE_BETWEEN_NAME_COMMA_CLASSDEFINITION',
+                                    array(),
+                                    $stackPtr);
                     }
                 }
 

@@ -36,6 +36,7 @@ if (class_exists('Generic_Sniffs_Formatting_MultipleStatementAlignmentSniff', tr
  */
 class ZF_Sniffs_Formatting_MultipleStatementAlignmentSniff
 extends Generic_Sniffs_Formatting_MultipleStatementAlignmentSniff
+implements SQLI_CodeSniffer_Sniff
 {
     /**
      * If true, an error will be thrown; otherwise a warning.

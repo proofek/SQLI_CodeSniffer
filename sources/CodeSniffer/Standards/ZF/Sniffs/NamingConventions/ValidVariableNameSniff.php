@@ -32,7 +32,9 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * @version   Release: 1.2.0RC2
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class ZF_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class ZF_Sniffs_NamingConventions_ValidVariableNameSniff
+extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+implements SQLI_CodeSniffer_Sniff
 {
 
     /**

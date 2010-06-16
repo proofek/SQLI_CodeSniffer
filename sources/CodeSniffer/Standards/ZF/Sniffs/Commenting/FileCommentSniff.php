@@ -32,7 +32,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Commenting_FileCommentSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * The header comment parser for the current file

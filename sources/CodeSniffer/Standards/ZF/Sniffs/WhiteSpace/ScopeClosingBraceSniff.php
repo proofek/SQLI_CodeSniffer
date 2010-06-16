@@ -29,7 +29,7 @@
  * @copyright Copyright (c) 2005-2008 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ZF_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements SQLI_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -91,7 +91,7 @@ class ZF_Sniffs_WhiteSpace_ScopeClosingBraceSniff implements PHP_CodeSniffer_Sni
         if (in_array($tokens[$stackPtr]['code'], array(T_CASE, T_DEFAULT)) === true and $isBreakCloser === true) {
             // BREAK statements should be indented 4 spaces from the
             // CASE or DEFAULT statement.
-            
+
             //Allready tested in ControlStructures
             /*if ($braceIndent !== ($startColumn + 4)) {
                 $error = 'Break statement indented incorrectly; expected ' . ($startColumn + 3)

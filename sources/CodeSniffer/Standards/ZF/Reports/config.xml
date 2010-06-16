@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+    <event code="RC_DYNAMIC_ERROR" source="PHPCS/Generic">
+        <name>Erreur PHP_CodeSniffer</name>
+        <message>:message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="RC_DYNAMIC_WARNING" source="PHPCS/Generic">
+        <name>Warning PHP_CodeSniffer</name>
+        <message>:message</message>
+        <level>WARNING</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="ARRAY_KEYWORD_LOWERCASE" source="ZF/Arrays/ArrayDeclarationSniff">
+        <name>Array Keyword Lower Case</name>
+        <message>Array keyword should be lower case.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_SPACE_BEFORE_PARENTHESIS_ARRAY" source="ZF/Arrays/ArrayDeclarationSniff">
+        <name>No Space Before Parenthesis Array</name>
+        <message>There must be no space between the Array keyword and the opening parenthesis.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_SPACE_BETWEEN_PARENTHESIS_EMPTYARRAY" source="ZF/Arrays/ArrayDeclarationSniff">
+        <name>No Space Between Parenthesis Empty Array</name>
+        <message>Empty array declaration must have no space between the parentheses.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="OPENING_BRACE_LINE_AFTER_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Opening Brace Line After Class Definition</name>
+        <message>Opening brace must be on the line after the definition.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="OPENING_BRACE_LINE_BY_ITSELF_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Opening BraceLine By Itself Class Definition</name>
+        <message>Opening brace must be on a line by itself. Found content after it.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_SPACE__BEFORE_OPENING_BRACE_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>No Space Before Opening Brace Class Definition</name>
+        <message>Expected no space before opening brace.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="ONE_CLASS_OR_INTERFACE_IN_SINGLE_FILE" source="ZF/Classes/ClassDeclarationSniff">
+        <name>One Class Or Interface In Single File</name>
+        <message>Only one interface or class is allowed in a file.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="SPACE_BEFORE_CLASS_KEYWORD" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Space Before Class Keyword</name>
+        <message>Expected no spaces before class keyword.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="SPACE_REQUIRED_BEFORE_CLASS_KEYWORD" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Space Required Before Class Keyword</name>
+        <message>Expected exactly 1 space before class keyword.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_SPACE_BEFORE_CLOSING_BRACE_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>No Space Before Closing Brace Class Definition</name>
+        <message>Expected no space before closing brace.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="BLANK_LINE_REQUIRED_AFTER_CLOSING_BRACE_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Blank Line Required After Closing Brace Class Definition</name>
+        <message>Closing brace must be followed by a blank line.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_CONTENT_AFTER_CLOSING_BRACE_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>NoContentAfterClosingBraceClassDefinition</name>
+        <message>Content after closing brace found. Only one empty line allowed.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="BLANK_LINE_REQUIRED_AFTER_CLOSING_BRACE_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Blank Line Required After Closing Brace Class Definition</name>
+        <message>Closing brace must be followed by a single blank line.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CLOSING_BRACE_LINE_BY_ITSELF_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Closing Brace Line By Itself Class Definition</name>
+        <message>Closing brace must be on a line by itself.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="SPACE_REQUIRED_BETWEEN_KEYWORD_NAME_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Space Required Between Keyword Name Class Definition</name>
+        <message>Expected 1 space between keyword and name.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="SPACE_REQUIRED_AFTER_NAME_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Space Required After Name Class Definition</name>
+        <message>Expected 1 space after name.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="SPACE_REQUIRED_BEFORE_NAME_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>Space Required Before Name Class Definition</name>
+        <message>Expected space before name.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="NO_SPACE_BETWEEN_NAME_COMMA_CLASSDEFINITION" source="ZF/Classes/ClassDeclarationSniff">
+        <name>No Space Between Name Comma Class Definition</name>
+        <message>Expected no spaces between name and comma.</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Classes/ClassFileNameSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/BlockCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/ClassCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/FileCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/FunctionCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/InlineCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/PostStatementCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Commenting/VariableCommentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/ControlStructures/SwitchDeclarationSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Debug/CodeAnalyzerSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Files/ClosingTagSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Files/IncludingFileSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Files/LineLengthSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Formatting/MultipleStatementAlignmentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Functions/FunctionCallArgumentSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Functions/FunctionCallSignatureSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Functions/FunctionDeclarationArgumentSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Functions/GlobalFunctionSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Functions/ValidDefaultValueSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Metrics/CyclomaticComplexitySniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Metrics/NestingLevelSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/NamingConventions/ValidFunctionNameSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/NamingConventions/ValidVariableNameSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Operators/ValidLogicalOperatorsSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/PHP/DisallowShortOpenTagSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/Strings/ConcatenationSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/ControlStructureSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/DisallowTabSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/FunctionSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/MemberVarSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/OperatorSpacingSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/ScopeClosingBraceSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+    <event code="CODE" source="ZF/WhiteSpace/ScopeIndentSniff">
+        <name>NAME</name>
+        <message>Message</message>
+        <level>ERROR</level>
+        <category>Maintainability</category>
+    </event>
+</report>

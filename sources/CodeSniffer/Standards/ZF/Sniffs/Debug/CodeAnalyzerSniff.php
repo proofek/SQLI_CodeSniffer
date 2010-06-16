@@ -28,7 +28,7 @@
  * @version   Release: 1.2.0RC2
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class ZF_Sniffs_Debug_CodeAnalyzerSniff implements PHP_CodeSniffer_Sniff
+class ZF_Sniffs_Debug_CodeAnalyzerSniff implements SQLI_CodeSniffer_Sniff
 {
 
 
